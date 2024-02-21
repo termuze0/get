@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Navigation Bar</title>
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+
+.navbar {
+    background-color: #061822;
+  }
+
+  /* Style for first row */
+  .navbar .row1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+   
+  }
+  /* Style for logo */
+  .navbar .logo {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+  }
+
+/* Styling for search container */
+.search-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+  }
+
+  /* Styling for search bar */
+  .search-bar {
+    width: 300px;
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    outline: none;
+    font-size: 16px;
+  }
+
+  /* Styling for search button */
+  .search-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 20px;
+    margin-left: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Hover effect for search button */
+  .search-button:hover {
+    background-color: #0056b3;
+  }
+
+
+
+
+
+  /* Style for navigation bar */
+
+
+  /* Style for second row */
+  .navbar .row2 {
+    background-color: #444;
+    padding: 10px;
+  }
+
+
+
+
+  /* Styling for menu list */
+  .menu-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+
+  /* Styling for menu items */
+  .menu-list li {
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  /* Styling for menu links */
+  .menu-list li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    border: 2px solid transparent;
+  }
+
+  /* Change color and background on hover */
+  .menu-list li a:hover {
+    background-color: #555;
+    border-color: #fff;
+  }
+
+  /* Active link */
+  .menu-list li a.active {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <!-- First Row -->
+  <div class="row1">
+    <a href="#" class="logo">Your Logo</a>
+    <div class="search-container">
+        <input type="text" class="search-bar" placeholder="Search...">
+        <button class="search-button">Search</button>
+      </div>
+      <div class="profile-container" onclick="toggleDropdown()">
+        <img src="logo.png" alt="User Avatar" width="40" height="40">
+        
+        <div class="profile-dropdown" id="profileDropdown">
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <a href="#" class="dropdown-item">Profile</a>
+          <a href="#" class="dropdown-item">Settings</a>
+          <a href="#" class="dropdown-item">Logout</a>
+        </div>
+      </div>
+  </div>
+
+  <!-- Second Row -->
+  <div class="row2">
+    <ul class="menu-list">
+        <li><a href="#" class="active">chat</a></li>
+        <li><a href="#">news</a></li>
+        <li><a href="#">event</a></li>
+        <li><a href="#">bonus</a></li>
+        <li><a href="#">Gift</a></li>
+        <li><a href="#">package</a></li>
+        <li><a href="#">notification</a></li>
+      </ul>
+  </div>
+</div>
+
+</body>
+<script>
+  
+  function toggleDropdown() {
+    var dropdown = document.getElementById("profileDropdown");
+    dropdown.style.display = dropdown.style.display === "none" ? "block" : "none";
+  }
+
+  // Close the dropdown menu if the user clicks outside of it
+  window.onclick = function(event) {
+    if (!event.target.closest('.profile-container')) {
+      var dropdowns = document.getElementsByClassName("profile-dropdown");
+      for (var i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.style.display === "block") {
+          openDropdown.style.display = "none";
+        }
+      }
+    }
+  }
+</script>
+<style>
+     .profile-container {
+    position: relative;
+    display: inline-block;
+    margin: 20px;
+    cursor: pointer;
+    border-radius: 50%;
+    border: 1px solid green;
+    background-color: #007bff;
+    width: 60px;
+    height: 60px;
+  }
+  .profile-container > img{
+    border-radius: 50%;
+    padding: 6px;
+    width: 100%;
+    height: 100%;
+  }
+  /* Styling for profile dropdown */
+  .profile-dropdown {
+    position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  overflow: auto; /* Add overflow auto to enable scrolling if necessary */
+  z-index: 1;
+  }
+
+  /* Styling for dropdown items */
+  .dropdown-item {
+    padding: 10px 20px;
+    text-decoration: none;
+    display: block;
+    color: #333;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Change background color on hover */
+  .dropdown-item:hover {
+    background-color: #ddd;
+  }
+</style>
+<!-- father inside spike blade together measure gap erosion humor fossil jazz board -->
+</html>
